@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowRight, Search, ShoppingBag, Play, Droplets } from "lucide-react";
 import "./index.css";
 
@@ -65,10 +65,22 @@ const serumIngredients = {
   ],
 };
 
+
+
 export default function App() {
   const [active, setActive] = useState("pink");
   const [ritualOpen, setRitualOpen] = useState(false);
   const serum = serums[active];
+
+const [ritualLine, setRitualLine] = useState(0);
+
+useEffect(() => {
+  const timer = setInterval(() => {
+    setRitualLine((prev) => (prev + 1) % 4);
+  }, 3000);
+
+  return () => clearInterval(timer);
+}, []);
 
   return (
     <main className="site" style={{ "--accent": serum.color }}>
@@ -109,7 +121,7 @@ export default function App() {
 
         <div className="model-frame">
           <img
-  key={active}
+  
   className="model-image"
   src={
     active === "pink"
@@ -238,7 +250,7 @@ export default function App() {
           
 
 <img
-  key={active}
+  
   className="serum-product"
   src={
     active === "pink" ? "/skinaura-serum.png" :
@@ -296,12 +308,17 @@ export default function App() {
 
         <div className="serum-picker" id="serums">
           {Object.entries(serums).map(([key, item]) => (
-            <button
-              className={`serum-option ${active === key ? "selected" : ""}`}
-              key={key}
-              onClick={() => setActive(key)}
-              style={{ "--swatch": item.color }}
-            >
+           <button
+  type="button"
+  className={`serum-option ${active === key ? "selected" : ""}`}
+  key={key}
+  onMouseEnter={() => {
+    console.log("Hovered serum:", key);
+    setActive(key);
+  }}
+  onClick={() => setActive(key)}
+  style={{ "--swatch": item.color }}
+>
               
 <span className="mini-bottle">
   <img
@@ -339,7 +356,7 @@ export default function App() {
 >
   <div className="science-background" aria-hidden="true">
     <img
-      key={active}
+      
       src={
         active === "pink" ? "/drop1.png" :
         active === "amber" ? "/drop2.png" :
@@ -413,18 +430,21 @@ export default function App() {
   style={{ "--accent": serum.color }}
 >
   {/* Background image — text ke peeche */}
-  <div className="ritual-background" aria-hidden="true">
-    <img
-      key={active}
-      src={
-        active === "pink" ? "/ritual-pink.png" :
-        active === "amber" ? "/ritual-amber.png" :
-        active === "blue" ? "/ritual-blue.png" :
-        "/ritual-green.png"
-      }
-      alt=""
-    />
-  </div>
+  
+{/* Background video — text ke peeche */}
+<div className="ritual-background" aria-hidden="true">
+  <video
+    className="ritual-video"
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="metadata"
+  >
+    <source src="/skinaura-ritual.mp4" type="video/mp4" />
+  </video>
+</div>
+
 
   {/* YE TEXT HAI — ISE NAHI HATANA */}
   <div className="ritual-copy">
@@ -470,7 +490,7 @@ export default function App() {
 >
   <div className="skin-cta-background" aria-hidden="true">
     <img
-      key={active}
+      
       src={
         active === "pink" ? "/cta-pink.png" :
         active === "amber" ? "/cta-amber.png" :
