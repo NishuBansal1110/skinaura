@@ -120,20 +120,33 @@ useEffect(() => {
         </div>
 
         <div className="model-frame">
-          <img
-  
-  className="model-image"
-  src={
-    active === "pink"
-      ? "/model1.png"
-      : active === "amber"
-      ? "/model2.png"
-      : active === "blue"
-      ? "/model3.png"
-      : "/model4.png"
-  }
-  alt={`SkinAura ${serum.name} skincare model`}
-/>
+          {active === "pink" ? (
+  <video
+    className="model-image"
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="metadata"
+  >
+    <source
+      src="/skinaura-pink-model.mp4"
+      type="video/mp4"
+    />
+  </video>
+) : (
+  <img
+    className="model-image"
+    src={
+      active === "amber"
+        ? "/model2.png"
+        : active === "blue"
+        ? "/model3.png"
+        : "/model4.png"
+    }
+    alt={`SkinAura ${serum.name} skincare model`}
+  />
+)}
           <div className="model-shade"/>
           <div className="model-caption">THE ART OF SKINCARE</div>
         </div>
@@ -355,16 +368,36 @@ useEffect(() => {
   style={{ "--accent": serum.color }}
 >
   <div className="science-background" aria-hidden="true">
+   
+<div className="science-background" aria-hidden="true">
+  {active === "pink" ? (
+    <video
+      className="science-background-video"
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+    >
+      <source
+        src="/ritual-drops.mp4"
+        type="video/mp4"
+      />
+    </video>
+  ) : (
     <img
-      
       src={
-        active === "pink" ? "/drop1.png" :
-        active === "amber" ? "/drop2.png" :
-        active === "blue" ? "/drop3.png" :
-        "/drop4.png"
+        active === "amber"
+          ? "/drop2.png"
+          : active === "blue"
+          ? "/drop3.png"
+          : "/drop4.png"
       }
       alt=""
     />
+  )}
+</div>
+
   </div>
 
   <div className="science-overlay" />
@@ -489,16 +522,36 @@ useEffect(() => {
   style={{ "--accent": serum.color }}
 >
   <div className="skin-cta-background" aria-hidden="true">
+    
+<div className="skin-cta-background" aria-hidden="true">
+  {active === "pink" ? (
+    <video
+      className="skin-cta-background-video"
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+    >
+      <source
+        src="/skinaura-final-bg.mp4"
+        type="video/mp4"
+      />
+    </video>
+  ) : (
     <img
-      
       src={
-        active === "pink" ? "/cta-pink.png" :
-        active === "amber" ? "/cta-amber.png" :
-        active === "blue" ? "/cta-blue.png" :
-        "/cta-green.png"
+        active === "amber"
+          ? "/cta-amber.png"
+          : active === "blue"
+          ? "/cta-blue.png"
+          : "/cta-green.png"
       }
       alt=""
     />
+  )}
+</div>
+
   </div>
 
   <div className="skin-cta-content">
