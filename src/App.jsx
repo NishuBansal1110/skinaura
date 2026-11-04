@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { ArrowRight, Search, ShoppingBag, Play, Droplets } from "lucide-react";
 import "./index.css";
+import SkinDiscovery from "./SkinDiscovery";
 
 const serums = {
   pink: {
@@ -68,22 +69,102 @@ const serumIngredients = {
 
 
 export default function App() {
-  const [active, setActive] = useState("pink");
+  const [active, setActive] = useState(() => {
+  const requestedSerum =
+    new URLSearchParams(window.location.search).get("serum");
+
+  return ["pink", "amber", "blue", "green"].includes(requestedSerum)
+    ? requestedSerum
+    : "pink";
+});
+
+useEffect(() => {
+  if (window.location.search.includes("serum=")) {
+    const timer = setTimeout(() => {
+      document.getElementById("serums")?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }
+}, []);
   const [ritualOpen, setRitualOpen] = useState(false);
   const serum = serums[active];
 
 const [ritualLine, setRitualLine] = useState(0);
+
+const videoFiles = [
+  "/skinaura-pink-model.mp4",
+  "/skinaura-amber-model.mp4",
+  "/skinaura-blue-model.mp4",
+  "/skinaura-green-model.mp4",
+
+  "/ritual-drops.mp4",
+  "/amber-drops.mp4",
+  "/blue-drops.mp4",
+  "/green-drops.mp4",
+
+  "/skinaura-final-bg.mp4",
+  "/skinaura-amber-final.mp4",
+  "/skinaura-blue-final.mp4",
+  "/skinaura-green-final.mp4",
+];
+
 
 useEffect(() => {
   const timer = setInterval(() => {
     setRitualLine((prev) => (prev + 1) % 4);
   }, 3000);
 
+  
+
   return () => clearInterval(timer);
 }, []);
 
+const handleSerumRecommendation = (serumKey) => {
+  window.location.href = `/?serum=${serumKey}#serums`;
+};
+
+const isSkinDiscoveryPage =
+  new URLSearchParams(window.location.search)
+    .get("page") === "skin-discovery";
+
+if (isSkinDiscoveryPage) {
+  return (
+    <SkinDiscovery
+      onSelectSerum={handleSerumRecommendation}
+    />
+  );
+}
+
   return (
     <main className="site" style={{ "--accent": serum.color }}>
+
+<div
+  aria-hidden="true"
+  style={{
+    position: "fixed",
+    left: "-9999px",
+    top: 0,
+    width: "1px",
+    height: "1px",
+    overflow: "hidden",
+    opacity: 0,
+    pointerEvents: "none",
+  }}
+>
+  {videoFiles.map((src) => (
+    <video
+      key={src}
+      src={src}
+      preload="auto"
+      muted
+      playsInline
+    />
+  ))}
+</div>
+
       <header className="navbar">
         <a className="brand" href="#home">SkinAura<span>®</span></a>
 
@@ -120,33 +201,28 @@ useEffect(() => {
         </div>
 
         <div className="model-frame">
-          {active === "pink" ? (
-  <video
-    className="model-image"
-    autoPlay
-    muted
-    loop
-    playsInline
-    preload="metadata"
-  >
-    <source
-      src="/skinaura-pink-model.mp4"
-      type="video/mp4"
-    />
-  </video>
-) : (
-  <img
-    className="model-image"
-    src={
-      active === "amber"
-        ? "/model2.png"
-        : active === "blue"
-        ? "/model3.png"
-        : "/model4.png"
-    }
-    alt={`SkinAura ${serum.name} skincare model`}
-  />
-)}
+ 
+<video
+  key={active}
+  className="model-image"
+  src={
+    active === "pink"
+      ? "/skinaura-pink-model.mp4"
+      : active === "amber"
+      ? "/skinaura-amber-model.mp4"
+      : active === "blue"
+      ? "/skinaura-blue-model.mp4"
+      : "/skinaura-green-model.mp4"
+  }
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="auto"
+/>
+
+
+
           <div className="model-shade"/>
           <div className="model-caption">THE ART OF SKINCARE</div>
         </div>
@@ -367,38 +443,28 @@ useEffect(() => {
   id="science"
   style={{ "--accent": serum.color }}
 >
-  <div className="science-background" aria-hidden="true">
-   
+  
 <div className="science-background" aria-hidden="true">
-  {active === "pink" ? (
-    <video
-      className="science-background-video"
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="metadata"
-    >
-      <source
-        src="/ritual-drops.mp4"
-        type="video/mp4"
-      />
-    </video>
-  ) : (
-    <img
-      src={
-        active === "amber"
-          ? "/drop2.png"
-          : active === "blue"
-          ? "/drop3.png"
-          : "/drop4.png"
-      }
-      alt=""
-    />
-  )}
+  <video
+    key={active}
+    className="science-background-video"
+    src={
+      active === "pink"
+        ? "/ritual-drops.mp4"
+        : active === "amber"
+        ? "/amber-drops.mp4"
+        : active === "blue"
+        ? "/blue-drops.mp4"
+        : "/green-drops.mp4"
+    }
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="auto"
+  />
 </div>
 
-  </div>
 
   <div className="science-overlay" />
 
@@ -472,7 +538,7 @@ useEffect(() => {
     muted
     loop
     playsInline
-    preload="metadata"
+    preload="auto"
   >
     <source src="/skinaura-ritual.mp4" type="video/mp4" />
   </video>
@@ -521,38 +587,29 @@ useEffect(() => {
   className={`skin-cta-section skin-cta-${active}`}
   style={{ "--accent": serum.color }}
 >
-  <div className="skin-cta-background" aria-hidden="true">
-    
+
 <div className="skin-cta-background" aria-hidden="true">
-  {active === "pink" ? (
-    <video
-      className="skin-cta-background-video"
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="metadata"
-    >
-      <source
-        src="/skinaura-final-bg.mp4"
-        type="video/mp4"
-      />
-    </video>
-  ) : (
-    <img
-      src={
-        active === "amber"
-          ? "/cta-amber.png"
-          : active === "blue"
-          ? "/cta-blue.png"
-          : "/cta-green.png"
-      }
-      alt=""
-    />
-  )}
+  <video
+    key={active}
+    className="skin-cta-background-video"
+    src={
+      active === "pink"
+        ? "/skinaura-final-bg.mp4"
+        : active === "amber"
+        ? "/skinaura-amber-final.mp4"
+        : active === "blue"
+        ? "/skinaura-blue-final.mp4"
+        : "/skinaura-green-final.mp4"
+    }
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="auto"
+  />
 </div>
 
-  </div>
+
 
   <div className="skin-cta-content">
     <p className="eyebrow">YOUR SKIN, YOUR STORY</p>
@@ -568,12 +625,16 @@ useEffect(() => {
       {active === "green" && "Find your balance with a refreshing botanical ritual."}
     </p>
 
-    <a className="skin-cta-button" href="#serums">
+    <a className="skin-cta-button" href="/?page=skin-discovery"
+target="_blank"
+rel="noopener noreferrer">
       Explore serum worlds
       <ArrowRight size={18} />
     </a>
   </div>
 </section>
+
+
 
 <footer className="site-footer" style={{ "--accent": serum.color }}>
   <a className="footer-brand" href="#home">SkinAura<span>®</span></a>
