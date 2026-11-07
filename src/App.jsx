@@ -77,7 +77,20 @@ export default function App() {
     ? requestedSerum
     : "pink";
 });
+const [ritualStep, setRitualStep] = useState("cleanse");
 
+const handleRitualVideoTime = (e) => {
+  const time = e.currentTarget.currentTime;
+
+  // Example timings — apne video ke scenes ke according adjust karna
+  if (time < 3) {
+    setRitualStep("cleanse");
+  } else if (time < 8) {
+    setRitualStep("apply");
+  } else {
+    setRitualStep("glow");
+  }
+};
 useEffect(() => {
   if (window.location.search.includes("serum=")) {
     const timer = setTimeout(() => {
@@ -523,62 +536,174 @@ if (isSkinDiscoveryPage) {
 </section>
 
 
+
+
 <section
-  className="ritual-section"
+  className="ritual-cinema ritual-theme-section"
   id="ritual"
-  style={{ "--accent": serum.color }}
+  style={{
+    "--ritual-accent": serum.color,
+    "--ritual-bg-image": `url("/ritual-bg-${active}.png")`
+  }}
 >
-  {/* Background image — text ke peeche */}
-  
-{/* Background video — text ke peeche */}
-<div className="ritual-background" aria-hidden="true">
-  <video
-    className="ritual-video"
-    autoPlay
-    muted
-    loop
-    playsInline
-    preload="auto"
-  >
-    <source src="/skinaura-ritual.mp4" type="video/mp4" />
-  </video>
-</div>
 
 
-  {/* YE TEXT HAI — ISE NAHI HATANA */}
-  <div className="ritual-copy">
-    <p className="eyebrow">YOUR DAILY MOMENT</p>
+
+  {/* TOP TITLE */}
+  <div className="ritual-heading">
+    <p className="eyebrow">THE SKINAURA RITUAL</p>
 
     <h2>
-      A DROP.<br />
-      A BREATH.<br />
-      A NEW RITUAL.
+      The <span>Ritual.</span>
     </h2>
 
-    <p className="ritual-description">
-      {active === "pink" && "A moment of hydration. Let your skin feel fresh, soft and renewed."}
-      {active === "amber" && "Your daily glow ritual. A golden moment of care for radiant-looking skin."}
-      {active === "blue" && "Slow down and soothe your skin with a calming moment in your daily ritual."}
-      {active === "green" && "Find your balance with a refreshing ritual inspired by botanical care."}
+    <p>
+      A simple, science-inspired routine for your most
+      beautiful skin days.
     </p>
-
-    <button
-      className="primary-button"
-      onClick={() => setRitualOpen(!ritualOpen)}
-    >
-      {ritualOpen ? "Close ritual" : "Explore the ritual"}
-      <ArrowRight size={18} />
-    </button>
-
-    {ritualOpen && (
-      <div className="ritual-steps">
-        <p>01 — Cleanse your skin gently.</p>
-        <p>02 — Apply your serum as directed.</p>
-        <p>03 — Gently pat into skin and moisturise.</p>
-      </div>
-    )}
   </div>
+
+  {/* MAIN CONTENT */}
+  <div className="ritual-experience-grid">
+
+    {/* LEFT TEXT */}
+    <div className="ritual-intro">
+
+      <p className="eyebrow">YOUR DAILY MOMENT</p>
+
+      <h3>
+        Apply
+        <br />
+        Your
+        <br />
+        <span>Serum.</span>
+      </h3>
+
+      <p className="ritual-intro-description">
+        A few thoughtful drops. A gentle touch.
+        A skincare moment made for your skin.
+      </p>
+
+      <div className="ritual-current-serum">
+        <span className="ritual-serum-dot" />
+        {serum.name} COLLECTION
+      </div>
+
+      <button
+        className="ritual-explore-button"
+        onClick={() => setRitualOpen(true)}
+      >
+        EXPLORE THE RITUAL
+        <span>→</span>
+      </button>
+
+    </div>
+
+    {/* CENTRE VIDEO */}
+    <div className="ritual-showcase">
+
+      <div className="ritual-video-frame">
+
+        <video
+          className="ritual-main-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          controls
+          preload="metadata"
+          onTimeUpdate={handleRitualVideoTime}
+        >
+          <source
+            src="/skinaura-ritual.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        <div className="ritual-video-label">
+          <span>SKINAURA FILM</span>
+          <span>{serum.name}</span>
+        </div>
+
+      </div>
+
+      {/* BOTTOM RITUAL STAGES */}
+      <div className="ritual-stage-cards">
+
+        <div className={`ritual-stage-card ${ritualStep === "cleanse" ? "active" : ""}`}>
+          <span>01</span>
+          <div>
+            <h4>Cleanse</h4>
+            <p>Refresh your skin</p>
+            
+          </div>
+        </div>
+
+        <div className={`ritual-stage-card ${ritualStep === "apply" ? "active" : ""}`}>
+          <span>02</span>
+          <div>
+            <h4>Apply</h4>
+            <p>Your serum moment</p>
+          </div>
+        </div>
+
+        <div className="ritual-stage-card">
+          <span>03</span>
+          <div>
+            <h4>Glow</h4>
+            <p>Reveal your aura</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    {/* RIGHT VERTICAL TIMELINE */}
+    <div className="ritual-timeline">
+
+      <div className="ritual-step">
+        <div className="ritual-step-icon">◇</div>
+        <div>
+          <span>01</span>
+          <h4>Cleanse</h4>
+          <p>Remove impurities and prepare your skin.</p>
+        </div>
+      </div>
+
+      <div className="ritual-step selected">
+        <div className="ritual-step-icon">✧</div>
+        <div>
+          <span>02</span>
+          <h4>Apply</h4>
+          <p>Use a few drops of your SkinAura serum.</p>
+        </div>
+      </div>
+
+      <div className="ritual-step">
+        <div className="ritual-step-icon">♧</div>
+        <div>
+          <span>03</span>
+          <h4>Massage</h4>
+          <p>Gently massage for an even application.</p>
+        </div>
+      </div>
+
+      <div className="ritual-step">
+        <div className="ritual-step-icon">✦</div>
+        <div>
+          <span>04</span>
+          <h4>Glow</h4>
+          <p>Finish your daily skincare ritual.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
+
 
 
 
@@ -611,27 +736,60 @@ if (isSkinDiscoveryPage) {
 
 
 
-  <div className="skin-cta-content">
-    <p className="eyebrow">YOUR SKIN, YOUR STORY</p>
+ 
+<div className="skin-cta-content">
 
-    <h2>
-      Find your <span>SkinAura.</span>
-    </h2>
+  <p className="eyebrow">
+    YOUR SKIN, YOUR STORY
+  </p>
 
-    <p className="skin-cta-description">
-      {active === "pink" && "Discover a softer, deeply hydrated skincare ritual."}
-      {active === "amber" && "Find your glow with a radiance-focused skincare ritual."}
-      {active === "blue" && "Discover a calmer, soothing skincare ritual."}
-      {active === "green" && "Find your balance with a refreshing botanical ritual."}
-    </p>
+  <h2>
+    Find your
+    <br />
+    <span>SkinAura.</span>
+  </h2>
 
-    <a className="skin-cta-button" href="/?page=skin-discovery"
-target="_blank"
-rel="noopener noreferrer">
-      Explore serum worlds
-      <ArrowRight size={18} />
-    </a>
+  <p className="skin-cta-description">
+    A personalized skincare ritual for calmer,
+    healthier and more radiant skin.
+  </p>
+
+  
+<div className="skin-cta-steps">
+
+  <div className="skin-cta-step">
+    <span className="step-icon">♧</span>
+    <h3>Cleanse</h3>
+    <p>Refresh &amp; purify</p>
   </div>
+
+  <div className="skin-cta-step">
+    <span className="step-icon">✿</span>
+    <h3>Treat</h3>
+    <p>Nourish &amp; care</p>
+  </div>
+
+  <div className="skin-cta-step">
+    <span className="step-icon">✧</span>
+    <h3>Glow</h3>
+    <p>Reveal your natural radiance</p>
+  </div>
+
+</div>
+
+
+ <a
+  href="/?page=skin-discovery"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="skin-cta-button"
+>
+  Discover Your Skin
+  <span>→</span>
+</a>
+
+</div>
+
 </section>
 
 

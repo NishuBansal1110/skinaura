@@ -4191,3 +4191,577 @@ footer > * {
     animation: none;
   }
 }
+
+/* =========================================
+   SKINAURA — RITUAL PAGE EMERGENCY LAYOUT FIX
+========================================= */
+
+.ritual-experience {
+  display: block !important;
+  position: relative !important;
+  isolation: isolate !important;
+
+  width: 100% !important;
+  min-height: 850px !important;
+  box-sizing: border-box !important;
+
+  padding: 65px 5% !important;
+  overflow: hidden !important;
+
+  background:
+    radial-gradient(ellipse at 15% 35%, rgba(150,55,95,.22), transparent 45%),
+    radial-gradient(ellipse at 85% 65%, rgba(210,110,155,.14), transparent 45%),
+    #190b14 !important;
+}
+
+/* HEADING */
+
+.ritual-heading {
+  display: block !important;
+  position: relative !important;
+  z-index: 2 !important;
+
+  width: 100% !important;
+  text-align: center !important;
+  margin: 0 auto 45px !important;
+}
+
+.ritual-heading .eyebrow {
+  color: #eaa5c1 !important;
+  font-size: 11px !important;
+  letter-spacing: 4px !important;
+  margin-bottom: 12px !important;
+}
+
+.ritual-heading h2 {
+  color: #fff1f6 !important;
+  font-family: 'Playfair Display', serif !important;
+  font-size: clamp(48px, 5vw, 72px) !important;
+  font-weight: 400 !important;
+  line-height: 1.1 !important;
+  margin: 0 0 12px !important;
+}
+
+.ritual-heading h2 span {
+  color: #efa1be !important;
+  font-style: italic !important;
+}
+
+.ritual-heading > p:last-child {
+  color: #ddc2d0 !important;
+  font-size: 15px !important;
+  margin: 0 !important;
+}
+
+/* THREE COLUMN GRID */
+
+.ritual-experience-grid {
+  display: grid !important;
+
+  grid-template-columns:
+    minmax(175px, .7fr)
+    minmax(360px, 2fr)
+    minmax(200px, .8fr) !important;
+
+  align-items: center !important;
+  gap: 27px !important;
+
+  width: 100% !important;
+  max-width: 1500px !important;
+  margin: 0 auto !important;
+}
+
+/* LEFT TEXT */
+
+.ritual-intro {
+  display: block !important;
+  min-width: 0 !important;
+}
+
+.ritual-intro h3 {
+  color: #fff1f6 !important;
+  font-family: 'Playfair Display', serif !important;
+  font-size: clamp(40px, 3.8vw, 58px) !important;
+  line-height: 1.08 !important;
+  font-weight: 400 !important;
+}
+
+.ritual-intro h3 span {
+  color: #efa1be !important;
+  font-style: italic !important;
+}
+
+.ritual-intro-description {
+  color: #ddc4d0 !important;
+  font-size: 13px !important;
+  line-height: 1.9 !important;
+}
+
+.ritual-explore-button {
+  display: flex !important;
+  width: 100% !important;
+  max-width: 225px !important;
+  min-height: 49px !important;
+
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  padding: 0 16px !important;
+  border: 1px solid rgba(255,255,255,.3) !important;
+  border-radius: 40px !important;
+
+  background: linear-gradient(110deg,#eaa0bd,#f1bfd2) !important;
+  color: #29131e !important;
+
+  cursor: pointer !important;
+}
+
+/* CENTER VIDEO */
+
+.ritual-showcase {
+  display: block !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  position: relative !important;
+}
+
+.ritual-video-frame {
+  position: relative !important;
+  display: block !important;
+
+  width: 100% !important;
+  aspect-ratio: 16 / 10 !important;
+
+  overflow: hidden !important;
+  border-radius: 22px !important;
+
+  border: 1px solid rgba(239,160,195,.55) !important;
+  background: #270f1c !important;
+}
+
+.ritual-main-video {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+.ritual-video-label {
+  position: absolute !important;
+  top: 15px !important;
+  left: 18px !important;
+  right: 18px !important;
+
+  display: flex !important;
+  justify-content: space-between !important;
+  z-index: 2 !important;
+
+  pointer-events: none !important;
+}
+
+.ritual-video-label span {
+  color: white !important;
+  font-size: 9px !important;
+  letter-spacing: 2px !important;
+}
+
+/* STAGE CARDS */
+
+.ritual-stage-cards {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+  gap: 10px !important;
+  margin-top: 15px !important;
+}
+
+.ritual-stage-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+
+  padding: 13px !important;
+  min-width: 0 !important;
+
+  border: 1px solid rgba(255,255,255,.18) !important;
+  border-radius: 12px !important;
+  background: rgba(255,255,255,.055) !important;
+}
+
+.ritual-stage-card.active {
+  border-color: #e9a2c0 !important;
+  background: rgba(233,162,192,.12) !important;
+}
+
+.ritual-stage-card > span {
+  color: #efa6c3 !important;
+  font-size: 15px !important;
+}
+
+.ritual-stage-card h4 {
+  color: #fff0f5 !important;
+  font-family: 'Playfair Display',serif !important;
+  font-size: 15px !important;
+  margin: 5px 0 !important;
+}
+
+.ritual-stage-card p {
+  color: #d4b9c7 !important;
+  font-size: 10px !important;
+  margin: 0 !important;
+}
+
+/* RIGHT TIMELINE */
+
+.ritual-timeline {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 23px !important;
+  min-width: 0 !important;
+}
+
+.ritual-step {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.ritual-step-icon {
+  flex: 0 0 44px !important;
+  height: 44px !important;
+
+  display: grid !important;
+  place-items: center !important;
+
+  border: 1px solid rgba(239,160,195,.4) !important;
+  border-radius: 50% !important;
+
+  color: #efa7c3 !important;
+  background: #29121f !important;
+  font-size: 22px !important;
+}
+
+.ritual-step h4 {
+  display: inline !important;
+  color: #fff0f5 !important;
+  font-family: 'Playfair Display',serif !important;
+  font-size: 17px !important;
+  font-weight: 400 !important;
+}
+
+.ritual-step > div:last-child > span {
+  color: #eaa2bf !important;
+  font-size: 11px !important;
+}
+
+.ritual-step p {
+  color: #d2b9c6 !important;
+  font-size: 11px !important;
+  line-height: 1.6 !important;
+}
+
+/* TABLET */
+
+@media (max-width: 1100px) {
+  .ritual-experience-grid {
+    grid-template-columns: minmax(0,1fr) minmax(0,2fr) !important;
+  }
+
+  .ritual-timeline {
+    grid-column: 1 / -1 !important;
+    display: grid !important;
+    grid-template-columns: repeat(4,minmax(0,1fr)) !important;
+    gap: 12px !important;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+  .ritual-experience {
+    min-height: auto !important;
+    padding: 50px 20px !important;
+  }
+
+  .ritual-experience-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+
+  .ritual-showcase {
+    grid-row: 2 !important;
+  }
+
+  .ritual-timeline {
+    grid-column: auto !important;
+    grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+  }
+
+  .ritual-stage-card {
+    padding: 9px !important;
+  }
+}
+
+/* FINAL FIX — CLEANSE / TREAT / GLOW */
+
+.skin-cta-steps {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-auto-flow: column !important;
+
+  width: 100% !important;
+  max-width: 720px !important;
+  gap: 16px !important;
+
+  align-items: stretch !important;
+  justify-content: center !important;
+
+  margin: 30px auto 35px !important;
+}
+
+.skin-cta-steps > .skin-cta-step {
+  display: flex !important;
+  flex-direction: column !important;
+
+  width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+
+  min-height: 145px !important;
+  padding: 16px 8px !important;
+}
+
+.skin-cta-steps > .skin-cta-step h3 {
+  margin: 8px 0 !important;
+  font-size: 20px !important;
+}
+
+.skin-cta-steps > .skin-cta-step p {
+  margin: 0 !important;
+  text-align: center !important;
+  font-size: 11px !important;
+}
+
+.skin-cta-steps > .skin-cta-step .step-icon {
+  font-size: 32px !important;
+  margin-bottom: 5px !important;
+}
+
+@media (max-width: 500px) {
+  .skin-cta-steps {
+    gap: 7px !important;
+  }
+
+  .skin-cta-steps > .skin-cta-step {
+    min-height: 115px !important;
+    padding: 10px 4px !important;
+  }
+
+  .skin-cta-steps > .skin-cta-step h3 {
+    font-size: 15px !important;
+  }
+}
+
+/* ==========================================
+   SKINAURA — DYNAMIC FOUR SERUM RITUAL THEME
+========================================== */
+
+/* MAIN BACKGROUND GLOW */
+
+.ritual-cinema {
+  --ritual-soft: color-mix(
+    in srgb,
+    var(--ritual-accent) 17%,
+    transparent
+  );
+
+  --ritual-border: color-mix(
+    in srgb,
+    var(--ritual-accent) 48%,
+    transparent
+  );
+
+  --ritual-deep: color-mix(
+    in srgb,
+    var(--ritual-accent) 25%,
+    #190b14
+  );
+
+  transition: background 0.45s ease;
+}
+
+.ritual-cinema::before {
+  border-top-color: var(--ritual-border);
+  box-shadow: 0 -15px 55px var(--ritual-soft);
+}
+
+/* TOP HEADING */
+
+.ritual-cinema-header > p {
+  color: var(--ritual-accent) !important;
+  transition: color 0.4s ease;
+}
+
+.ritual-cinema-header h2 span {
+  color: var(--ritual-accent) !important;
+  transition: color 0.4s ease;
+}
+
+/* LEFT TEXT */
+
+.ritual-cinema-label {
+  color: var(--ritual-accent) !important;
+}
+
+.ritual-cinema-intro h3 span {
+  color: var(--ritual-accent) !important;
+  transition: color 0.4s ease;
+}
+
+.ritual-cinema-serum span {
+  background: var(--ritual-accent) !important;
+  box-shadow: 0 0 16px var(--ritual-accent);
+}
+
+/* EXPLORE BUTTON */
+
+.ritual-cinema-intro button {
+  background: linear-gradient(
+    110deg,
+    var(--ritual-accent),
+    color-mix(in srgb, var(--ritual-accent) 65%, white)
+  ) !important;
+
+  box-shadow: 0 8px 25px var(--ritual-soft);
+  transition: background 0.4s ease, box-shadow 0.4s ease,
+              transform 0.3s ease;
+}
+
+.ritual-cinema-intro button:hover {
+  box-shadow: 0 12px 32px var(--ritual-border);
+}
+
+/* VIDEO FRAME */
+
+.ritual-cinema-video-frame {
+  border-color: var(--ritual-border) !important;
+  box-shadow:
+    0 22px 55px rgba(0,0,0,.35),
+    0 0 30px var(--ritual-soft) !important;
+
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* VIDEO LABEL */
+
+.ritual-cinema-video-top span:last-child {
+  color: var(--ritual-accent) !important;
+}
+
+/* BOTTOM STAGE CARDS */
+
+.ritual-cinema-bottom > div > span {
+  color: var(--ritual-accent) !important;
+}
+
+.ritual-cinema-bottom > div.active {
+  border-color: var(--ritual-accent) !important;
+  background: var(--ritual-soft) !important;
+  box-shadow: 0 0 18px var(--ritual-soft);
+}
+
+/* RIGHT SIDE TIMELINE */
+
+.ritual-cinema-steps::before {
+  background: var(--ritual-border) !important;
+}
+
+.ritual-cinema-icon {
+  color: var(--ritual-accent) !important;
+  border-color: var(--ritual-border) !important;
+
+  box-shadow: 0 0 10px var(--ritual-soft);
+  transition: all 0.4s ease;
+}
+
+.ritual-cinema-step > div:last-child > span {
+  color: var(--ritual-accent) !important;
+}
+
+.ritual-cinema-step.active .ritual-cinema-icon {
+  background: var(--ritual-soft) !important;
+  border-color: var(--ritual-accent) !important;
+  box-shadow: 0 0 22px var(--ritual-border) !important;
+}
+
+/* SMOOTH THEME TRANSITIONS */
+
+.ritual-cinema,
+.ritual-cinema * {
+  transition:
+    color 0.4s ease,
+    border-color 0.4s ease,
+    background-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+/* KEEP HOVER TRANSFORMS */
+
+.ritual-cinema-intro button:hover,
+.ritual-cinema-bottom > div:hover {
+  transform: translateY(-3px);
+}
+
+/* SKINAURA — DYNAMIC RITUAL BACKGROUNDS */
+
+.ritual-theme-section {
+  position: relative;
+  isolation: isolate;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(20, 8, 17, 0.84) 0%,
+      rgba(20, 8, 17, 0.63) 48%,
+      rgba(20, 8, 17, 0.48) 100%
+    ),
+    var(--ritual-bg-image);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  transition: background-color 0.4s ease;
+}
+
+/* Keep text and video above background */
+
+.ritual-theme-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dynamic accent colours */
+
+.ritual-theme-section .ritual-cinema-header h2 span,
+.ritual-theme-section .ritual-cinema-label,
+.ritual-theme-section .ritual-cinema-intro h3 span {
+  color: var(--ritual-accent) !important;
+}
+
+.ritual-theme-section .ritual-cinema-video-frame {
+  border-color: var(--ritual-accent);
+}
+
+.ritual-theme-section .ritual-cinema-intro button {
+  background: linear-gradient(
+    110deg,
+    var(--ritual-accent),
+    rgba(255,255,255,0.85)
+  );
+}
